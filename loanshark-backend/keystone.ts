@@ -27,17 +27,17 @@ export default withAuth(
         origin: "*", 
         methods: "OPTIONS,GET,HEAD,PUT,PATCH,POST,DELETE", 
         allowedHeaders: "Content-Type,Authorization,Access-Control-Allow-Origin,Access-Control-Allow-Methods,Access-Control-Allow-Credentials,Access-Control-Allow-Headers",
-        credentials: true,
+        credentials: false,
         preflightContinue: true, 
         maxAge: 3600,
-        optionsSuccessStatus: 204 
+        optionsSuccessStatus: 200 
       }    
     },
     graphql: {
       apolloConfig: {
         cors: {
           origin: '*',
-          credentials: true
+          credentials: false
         }
       },
     },
