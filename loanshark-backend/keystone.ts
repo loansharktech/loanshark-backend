@@ -5,7 +5,7 @@ It looks at the default export, and expects a Keystone config object.
 
 You can find all the config options in our docs here: https://keystonejs.com/docs/apis/config
 */
-
+require('dotenv').config();
 import { config } from '@keystone-6/core';
 
 // Look in the schema file for how we define our lists, and how users interact with them through graphql or the Admin UI
@@ -21,6 +21,9 @@ export default withAuth(
     db: {
       provider: 'sqlite',
       url: 'file:./keystone.db',
+    },
+    server: {
+	cors: { origin: "*", methods: "OPTIONS,GET,HEAD,PUT,PATCH,POST,DELETE", preflightContinue: false, optionsSuccessStatus: 204 }    
     },
     // This config allows us to set up features of the Admin UI https://keystonejs.com/docs/apis/config#ui
     ui: {
