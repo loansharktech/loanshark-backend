@@ -24,7 +24,7 @@ export default withAuth(
     },
     server: {
 	    cors: { 
-        origin: "*", 
+        origin: true, 
         methods: "OPTIONS,GET,HEAD,PUT,PATCH,POST,DELETE", 
         allowedHeaders: "Content-Type,Authorization,Access-Control-Allow-Origin,Access-Control-Allow-Methods,Access-Control-Allow-Credentials,Access-Control-Allow-Headers",
         credentials: true,
@@ -32,6 +32,14 @@ export default withAuth(
         maxAge: 3600,
         optionsSuccessStatus: 204 
       }    
+    },
+    graphql: {
+      apolloConfig: {
+        cors: {
+          origin: '*',
+          credentials: true
+        }
+      },
     },
     // This config allows us to set up features of the Admin UI https://keystonejs.com/docs/apis/config#ui
     ui: {
