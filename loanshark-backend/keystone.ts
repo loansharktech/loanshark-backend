@@ -23,7 +23,15 @@ export default withAuth(
       url: 'file:./keystone.db',
     },
     server: {
-	cors: { origin: "*", methods: "OPTIONS,GET,HEAD,PUT,PATCH,POST,DELETE", preflightContinue: false, optionsSuccessStatus: 204 }    
+	    cors: { 
+        origin: "*", 
+        methods: "OPTIONS,GET,HEAD,PUT,PATCH,POST,DELETE", 
+        allowedHeaders: "Content-Type,Authorization,Access-Control-Allow-Origin,Access-Control-Allow-Methods,Access-Control-Allow-Credentials,Access-Control-Allow-Headers",
+        credentials: true,
+        preflightContinue: true, 
+        maxAge: 3600,
+        optionsSuccessStatus: 204 
+      }    
     },
     // This config allows us to set up features of the Admin UI https://keystonejs.com/docs/apis/config#ui
     ui: {
