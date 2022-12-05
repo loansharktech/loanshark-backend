@@ -6,13 +6,6 @@ type User {
   name: String
   email: String
   password: PasswordState
-  posts(
-    where: PostWhereInput! = {}
-    orderBy: [PostOrderByInput!]! = []
-    take: Int
-    skip: Int! = 0
-  ): [Post!]
-  postsCount(where: PostWhereInput! = {}): Int
 }
 
 type PasswordState {
@@ -31,7 +24,6 @@ input UserWhereInput {
   id: IDFilter
   name: StringFilter
   email: StringFilter
-  posts: PostManyRelationFilter
 }
 
 input IDFilter {
@@ -73,12 +65,6 @@ input NestedStringFilter {
   not: NestedStringFilter
 }
 
-input PostManyRelationFilter {
-  every: PostWhereInput
-  some: PostWhereInput
-  none: PostWhereInput
-}
-
 input UserOrderByInput {
   id: OrderDirection
   name: OrderDirection
@@ -94,14 +80,6 @@ input UserUpdateInput {
   name: String
   email: String
   password: String
-  posts: PostRelateToManyForUpdateInput
-}
-
-input PostRelateToManyForUpdateInput {
-  disconnect: [PostWhereUniqueInput!]
-  set: [PostWhereUniqueInput!]
-  create: [PostCreateInput!]
-  connect: [PostWhereUniqueInput!]
 }
 
 input UserUpdateArgs {
@@ -113,29 +91,20 @@ input UserCreateInput {
   name: String
   email: String
   password: String
-  posts: PostRelateToManyForCreateInput
-}
-
-input PostRelateToManyForCreateInput {
-  create: [PostCreateInput!]
-  connect: [PostWhereUniqueInput!]
 }
 
 type Post {
   id: ID!
   title: String
   account: String
-  status: String
   content: String
+  borrowingPosition: String
+  healthFactor: String
+  actionType: String
+  amount: String
+  value: String
+  newHealthFactor: String
   publishDate: DateTime
-  author: User
-  tags(
-    where: TagWhereInput! = {}
-    orderBy: [TagOrderByInput!]! = []
-    take: Int
-    skip: Int! = 0
-  ): [Tag!]
-  tagsCount(where: TagWhereInput! = {}): Int
 }
 
 scalar DateTime
@@ -152,39 +121,14 @@ input PostWhereInput {
   id: IDFilter
   title: StringFilter
   account: StringFilter
-  status: StringNullableFilter
   content: StringFilter
+  borrowingPosition: StringFilter
+  healthFactor: StringFilter
+  actionType: StringFilter
+  amount: StringFilter
+  value: StringFilter
+  newHealthFactor: StringFilter
   publishDate: DateTimeNullableFilter
-  author: UserWhereInput
-  tags: TagManyRelationFilter
-}
-
-input StringNullableFilter {
-  equals: String
-  in: [String!]
-  notIn: [String!]
-  lt: String
-  lte: String
-  gt: String
-  gte: String
-  contains: String
-  startsWith: String
-  endsWith: String
-  not: NestedStringNullableFilter
-}
-
-input NestedStringNullableFilter {
-  equals: String
-  in: [String!]
-  notIn: [String!]
-  lt: String
-  lte: String
-  gt: String
-  gte: String
-  contains: String
-  startsWith: String
-  endsWith: String
-  not: NestedStringNullableFilter
 }
 
 input DateTimeNullableFilter {
@@ -198,42 +142,31 @@ input DateTimeNullableFilter {
   not: DateTimeNullableFilter
 }
 
-input TagManyRelationFilter {
-  every: TagWhereInput
-  some: TagWhereInput
-  none: TagWhereInput
-}
-
 input PostOrderByInput {
   id: OrderDirection
   title: OrderDirection
   account: OrderDirection
-  status: OrderDirection
   content: OrderDirection
+  borrowingPosition: OrderDirection
+  healthFactor: OrderDirection
+  actionType: OrderDirection
+  amount: OrderDirection
+  value: OrderDirection
+  newHealthFactor: OrderDirection
   publishDate: OrderDirection
 }
 
 input PostUpdateInput {
   title: String
   account: String
-  status: String
   content: String
+  borrowingPosition: String
+  healthFactor: String
+  actionType: String
+  amount: String
+  value: String
+  newHealthFactor: String
   publishDate: DateTime
-  author: UserRelateToOneForUpdateInput
-  tags: TagRelateToManyForUpdateInput
-}
-
-input UserRelateToOneForUpdateInput {
-  create: UserCreateInput
-  connect: UserWhereUniqueInput
-  disconnect: Boolean
-}
-
-input TagRelateToManyForUpdateInput {
-  disconnect: [TagWhereUniqueInput!]
-  set: [TagWhereUniqueInput!]
-  create: [TagCreateInput!]
-  connect: [TagWhereUniqueInput!]
 }
 
 input PostUpdateArgs {
@@ -244,33 +177,19 @@ input PostUpdateArgs {
 input PostCreateInput {
   title: String
   account: String
-  status: String
   content: String
+  borrowingPosition: String
+  healthFactor: String
+  actionType: String
+  amount: String
+  value: String
+  newHealthFactor: String
   publishDate: DateTime
-  author: UserRelateToOneForCreateInput
-  tags: TagRelateToManyForCreateInput
-}
-
-input UserRelateToOneForCreateInput {
-  create: UserCreateInput
-  connect: UserWhereUniqueInput
-}
-
-input TagRelateToManyForCreateInput {
-  create: [TagCreateInput!]
-  connect: [TagWhereUniqueInput!]
 }
 
 type Tag {
   id: ID!
   name: String
-  posts(
-    where: PostWhereInput! = {}
-    orderBy: [PostOrderByInput!]! = []
-    take: Int
-    skip: Int! = 0
-  ): [Post!]
-  postsCount(where: PostWhereInput! = {}): Int
 }
 
 input TagWhereUniqueInput {
@@ -283,7 +202,6 @@ input TagWhereInput {
   NOT: [TagWhereInput!]
   id: IDFilter
   name: StringFilter
-  posts: PostManyRelationFilter
 }
 
 input TagOrderByInput {
@@ -293,7 +211,6 @@ input TagOrderByInput {
 
 input TagUpdateInput {
   name: String
-  posts: PostRelateToManyForUpdateInput
 }
 
 input TagUpdateArgs {
@@ -303,7 +220,6 @@ input TagUpdateArgs {
 
 input TagCreateInput {
   name: String
-  posts: PostRelateToManyForCreateInput
 }
 
 """
